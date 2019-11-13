@@ -1,4 +1,4 @@
-version: "3.2"
+version: '2'
 services:
   ignition:
     image: kcollins/ignition:7.9.11-edge
