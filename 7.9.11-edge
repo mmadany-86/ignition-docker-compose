@@ -1,0 +1,31 @@
+version: "3.2"
+services:
+  ignition:
+    image: kcollins/ignition:7.9.11-edge
+    volumes:
+      - ignition-data:/var/lib/ignition
+    networks:
+      - default
+    ports:
+      - 8088:8088
+      - 8043:8043
+      - 8060:8060
+    environment:
+      - GATEWAY_SYSTEM_NAME=Logic_Supply_C1210G11_FERGE
+      - GATEWAY_USESSL=true
+    restart: always
+
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    ports:
+      - 9000:9000
+      - 8000:8000
+    restart: always
+
+volumes:
+  ignition-data:
+  portainer-data:
